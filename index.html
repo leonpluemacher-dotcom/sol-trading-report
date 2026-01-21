@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Trading Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .stat-card h3 {
+            color: #667eea;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        .table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        .table tr:hover {
+            background: #f8f9fa;
+        }
+        .positive {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .negative {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Solana Trading Report</h1>
+            <p>Comprehensive Market Analysis & Trading Performance</p>
+        </header>
+        
+        <div class="content">
+            <div class="section">
+                <h2>📊 Market Summary</h2>
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>Current Price</h3>
+                        <div class="value">$98.50</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>24h Change</h3>
+                        <div class="value positive">+5.23%</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Market Cap</h3>
+                        <div class="value">$32.5B</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>24h Volume</h3>
+                        <div class="value">$2.1B</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📈 Trading Performance</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Entry</th>
+                            <th>Exit</th>
+                            <th>Return</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-01-15</td>
+                            <td>$85.30</td>
+                            <td>$92.15</td>
+                            <td class="positive">+8.04%</td>
+                            <td>✅ Closed</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-18</td>
+                            <td>$92.50</td>
+                            <td>$88.75</td>
+                            <td class="negative">-4.05%</td>
+                            <td>✅ Closed</td>
+                        </tr>
+                        <tr>
+                            <td>2024-01-21</td>
+                            <td>$88.20</td>
+                            <td>$98.50</td>
+                            <td class="positive">+11.64%</td>
+                            <td>🔄 Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>🎯 Key Insights</h2>
+                <ul style="line-height: 1.8; color: #333; font-size: 1.05em;">
+                    <li>✓ Strong bullish momentum detected in the 4-hour timeframe</li>
+                    <li>✓ RSI (Relative Strength Index) shows healthy bullish pressure (58)</li>
+                    <li>✓ Support level maintained at $95.00</li>
+                    <li>✓ Resistance identified at $102.50 for next move</li>
+                    <li>✓ Trading volume above 30-day average</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>⚠️ Risk Assessment</h2>
+                <ul style="line-height: 1.8; color: #333; font-size: 1.05em;">
+                    <li>• Potential resistance at psychological level $100.00</li>
+                    <li>• Watch for potential pullback to $92.00</li>
+                    <li>• Market volatility expected around major news events</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>Report Generated: January 21, 2024 | Data Source: Real-time Market Feeds</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Disclaimer: This report is for informational purposes only and does not constitute financial advice.</p>
+        </footer>
+    </div>
+</body>
+</html>
