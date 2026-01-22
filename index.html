@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOL/USD Daily Trading Report</title>
+    <title>Solana SOL/USD Daily Trading Report</title>
     <style>
         * {
             margin: 0;
@@ -12,411 +12,406 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(180deg, #050608 0%, #0A0B0D 100%);
-            color: #FFFFFF;
-            padding: 24px;
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #050608 0%, #0A0B0D 100%);
+            color: #F5F5F5;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 20px;
         }
 
-        /* ===== HEADER ===== */
         .header {
-            background: linear-gradient(135deg, rgba(208, 16, 36, 0.15) 0%, rgba(140, 143, 150, 0.08) 100%);
-            border: 1px solid rgba(208, 16, 36, 0.3);
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 32px;
-            position: relative;
-            overflow: hidden;
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 2px solid #8C8F96;
+            margin-bottom: 30px;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #D01024 0%, #8C8F96 100%);
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .header-title {
-            font-size: 28px;
-            font-weight: 700;
+        .header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
             color: #FFFFFF;
-            margin-bottom: 20px;
             letter-spacing: -0.5px;
         }
 
-        .header-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 16px;
-        }
-
-        .stat-item {
-            background: rgba(5, 6, 8, 0.4);
-            border: 1px solid rgba(140, 143, 150, 0.2);
-            border-radius: 10px;
-            padding: 14px;
-        }
-
-        .stat-label {
-            font-size: 12px;
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 14px;
             color: #A0A3AA;
-            margin-bottom: 6px;
-            font-weight: 500;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price-badge {
+            background: rgba(192, 0, 24, 0.1);
+            border: 1px solid #C00018;
+            color: #D01024;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .risk-alert {
+            background: rgba(192, 0, 24, 0.15);
+            border-left: 4px solid #D01024;
+            padding: 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .risk-alert h3 {
+            color: #D01024;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .stat-value {
-            font-size: 18px;
-            font-weight: 700;
-            color: #FFFFFF;
-        }
-
-        .stat-value.negative {
-            color: #D01024;
-        }
-
-        .stat-value.positive {
-            color: #10b981;
-        }
-
-        /* ===== RISK ALERT ===== */
-        .risk-alert {
-            background: linear-gradient(135deg, rgba(208, 16, 36, 0.2) 0%, rgba(208, 16, 36, 0.08) 100%);
-            border-left: 4px solid #D01024;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 28px;
-        }
-
-        .alert-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #D01024;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .alert-content {
+        .risk-alert p {
+            color: #F5F5F5;
             font-size: 13px;
-            color: #D5D7DB;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        /* ===== SECTIONS ===== */
         .section {
-            background: rgba(140, 143, 150, 0.04);
-            border: 1px solid rgba(140, 143, 150, 0.15);
-            border-radius: 14px;
+            background: rgba(140, 143, 150, 0.08);
+            border: 1px solid #8C8F96;
+            border-radius: 8px;
             padding: 24px;
             margin-bottom: 20px;
         }
 
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
+        .section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
             color: #FFFFFF;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            border-bottom: 1px solid #8C8F96;
+            padding-bottom: 12px;
+            letter-spacing: -0.3px;
         }
 
-        /* ===== LEVELS TABLE ===== */
-        .levels-grid {
+        .section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #D01024;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
             margin-bottom: 16px;
         }
 
-        .level-box {
-            background: linear-gradient(135deg, rgba(5, 6, 8, 0.6) 0%, rgba(10, 11, 13, 0.4) 100%);
-            border: 1px solid rgba(140, 143, 150, 0.2);
-            border-radius: 10px;
-            padding: 16px;
+        .metric-card {
+            background: rgba(160, 163, 170, 0.08);
+            border: 1px solid #8C8F96;
+            border-radius: 6px;
+            padding: 14px;
+            text-align: center;
         }
 
-        .level-label {
+        .metric-label {
             font-size: 12px;
             color: #A0A3AA;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .level-type {
-            font-size: 11px;
-            color: #8C8F96;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 6px;
         }
 
-        .level-price {
-            font-size: 20px;
-            font-weight: 700;
+        .metric-value {
+            font-size: 18px;
+            font-weight: 600;
             color: #FFFFFF;
-            font-family: 'Courier New', monospace;
+            margin-bottom: 4px;
         }
 
-        .level-price.support {
-            color: #10b981;
+        .metric-hint {
+            font-size: 12px;
+            color: #8C8F96;
         }
 
-        .level-price.resistance {
+        .support-zone, .resistance-zone {
+            background: rgba(160, 163, 170, 0.05);
+            border-left: 3px solid #8C8F96;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        .support-zone {
+            border-left-color: #2ECC71;
+        }
+
+        .resistance-zone {
+            border-left-color: #D01024;
+        }
+
+        .zone-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .support-zone .zone-label {
+            color: #2ECC71;
+        }
+
+        .resistance-zone .zone-label {
             color: #D01024;
         }
 
-        /* ===== NEWS ITEMS ===== */
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .zone-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+
+        .zone-desc {
+            font-size: 12px;
+            color: #A0A3AA;
         }
 
         .news-item {
-            background: rgba(208, 16, 36, 0.08);
-            border-left: 3px solid #D01024;
-            border-radius: 8px;
-            padding: 14px;
+            background: rgba(160, 163, 170, 0.05);
+            border: 1px solid #8C8F96;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 4px;
         }
 
-        .news-headline {
-            font-size: 13px;
-            font-weight: 700;
+        .news-time {
+            font-size: 11px;
             color: #D01024;
-            margin-bottom: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }
 
-        .news-desc {
-            font-size: 12px;
-            color: #D5D7DB;
-            margin-bottom: 8px;
-            line-height: 1.5;
+        .news-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 4px;
         }
 
         .news-impact {
             font-size: 11px;
-            color: #8C8F96;
-            font-weight: 600;
-        }
-
-        /* ===== BIAS & INDICATORS ===== */
-        .bias-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-bottom: 16px;
+            color: #A0A3AA;
         }
 
         .bias-box {
-            background: rgba(140, 143, 150, 0.06);
-            border: 1px solid rgba(140, 143, 150, 0.2);
-            border-radius: 10px;
+            background: rgba(160, 163, 170, 0.08);
+            border: 1px solid #8C8F96;
             padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
         }
 
-        .bias-badge {
+        .bias-status {
             display: inline-block;
-            background: linear-gradient(135deg, #D01024 0%, #C00018 100%);
-            color: #FFFFFF;
-            padding: 6px 14px;
-            border-radius: 16px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 600;
             font-size: 12px;
-            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 12px;
         }
 
-        .bias-badge.neutral {
-            background: linear-gradient(135deg, #8C8F96 0%, #A0A3AA 100%);
-        }
-
-        .indicator-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .indicator-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(140, 143, 150, 0.1);
-        }
-
-        .indicator-item:last-child {
-            border-bottom: none;
-        }
-
-        .indicator-label {
+        .bias-neutral {
+            background: rgba(160, 163, 170, 0.2);
             color: #A0A3AA;
-            font-weight: 500;
         }
 
-        .indicator-value {
-            color: #FFFFFF;
-            font-weight: 600;
-            font-family: 'Courier New', monospace;
+        .bias-bearish {
+            background: rgba(192, 0, 24, 0.2);
+            color: #D01024;
+        }
+
+        .bias-bullish {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ECC71;
+        }
+
+        .indicator-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .indicator {
+            background: rgba(160, 163, 170, 0.05);
+            border: 1px solid #8C8F96;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .indicator-name {
+            font-size: 11px;
+            color: #A0A3AA;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }
 
         .indicator-signal {
-            background: rgba(208, 16, 36, 0.2);
-            color: #D01024;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 600;
+            color: #FFFFFF;
         }
 
-        /* ===== TRADE SETUPS ===== */
-        .setups-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 14px;
+        .setup-card {
+            background: rgba(160, 163, 170, 0.05);
+            border: 1px solid #8C8F96;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
         }
 
-        .setup {
-            background: rgba(5, 6, 8, 0.5);
-            border-left: 4px solid #D01024;
-            border-radius: 10px;
-            padding: 18px;
-        }
-
-        .setup.long {
-            border-left-color: #10b981;
+        .setup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
         .setup-title {
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 14px;
+            font-weight: 600;
             color: #FFFFFF;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .setup-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
+        .setup-confidence {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ECC71;
+            padding: 4px 8px;
+            border-radius: 3px;
             font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .setup-detail {
-            background: rgba(140, 143, 150, 0.06);
-            padding: 10px;
-            border-radius: 6px;
-        }
-
-        .setup-detail-label {
-            color: #A0A3AA;
-            margin-bottom: 4px;
-            font-weight: 600;
-            font-size: 10px;
-        }
-
-        .setup-detail-value {
-            color: #FFFFFF;
-            font-weight: 700;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* ===== SUMMARY BOX ===== */
-        .summary {
-            background: linear-gradient(135deg, #D01024 0%, #C00018 100%);
-            border-radius: 14px;
-            padding: 28px;
-            text-align: center;
-            margin-top: 28px;
-        }
-
-        .summary-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 20px;
-        }
-
-        .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 16px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
         }
 
-        .summary-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 14px;
-            border-radius: 8px;
+        .detail-item {
+            background: rgba(160, 163, 170, 0.05);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #8C8F96;
         }
 
-        .summary-label {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 6px;
+        .detail-label {
+            font-size: 10px;
+            color: #A0A3AA;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            font-size: 14px;
             font-weight: 600;
-        }
-
-        .summary-value {
-            font-size: 16px;
-            font-weight: 700;
             color: #FFFFFF;
         }
 
-        .summary-note {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 16px;
+        .summary-stat {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
         }
 
-        /* ===== FOOTER ===== */
+        .stat-block {
+            background: rgba(160, 163, 170, 0.08);
+            border: 1px solid #8C8F96;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #A0A3AA;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
         .footer {
             text-align: center;
-            margin-top: 32px;
             padding: 20px;
             color: #8C8F96;
-            font-size: 11px;
-            border-top: 1px solid rgba(140, 143, 150, 0.2);
+            font-size: 12px;
+            border-top: 1px solid #8C8F96;
+            margin-top: 30px;
         }
 
-        /* ===== RESPONSIVE ===== */
+        .highlight-red {
+            color: #D01024;
+            font-weight: 600;
+        }
+
+        .highlight-green {
+            color: #2ECC71;
+            font-weight: 600;
+        }
+
+        .text-small {
+            font-size: 12px;
+            color: #A0A3AA;
+            line-height: 1.5;
+        }
+
         @media (max-width: 768px) {
-            .header {
-                padding: 20px;
+            .header h1 {
+                font-size: 24px;
             }
 
-            .header-title {
-                font-size: 20px;
+            .metric-grid {
+                grid-template-columns: 1fr;
             }
 
-            .header-stats {
-                grid-template-columns: repeat(2, 1fr);
+            .indicator-row {
+                grid-template-columns: 1fr;
             }
 
-            .section {
-                padding: 16px;
-            }
-
-            .levels-grid {
+            .setup-detail {
                 grid-template-columns: 1fr;
             }
         }
@@ -426,316 +421,373 @@
     <div class="container">
         <!-- HEADER -->
         <div class="header">
-            <div class="header-content">
-                <div class="header-title">💰 SOL/USD Daily Trading Report</div>
-                <div class="header-stats">
-                    <div class="stat-item">
-                        <div class="stat-label">Kurs</div>
-                        <div class="stat-value">$127.44</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">24h Change</div>
-                        <div class="stat-value negative">-1.01%</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Volatilität</div>
-                        <div class="stat-value negative">HOCH</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Risiko-Level</div>
-                        <div class="stat-value negative">HIGH</div>
-                    </div>
+            <h1>Solana (SOL/USD) Daily Trading Report</h1>
+            <div class="header-meta">
+                <div class="meta-item">
+                    <span>22. Januar 2026</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- MACRO OVERVIEW -->
-        <div class="section">
-            <div class="section-title">🌍 Macro Overview – Bitcoin, Nasdaq & S&P 500</div>
-            <div style="background: rgba(140, 143, 150, 0.08); border-left: 3px solid #8C8F96; padding: 14px; border-radius: 8px; margin-bottom: 18px; font-size: 12px; line-height: 1.7; color: #D5D7DB;">
-                <strong style="color: #FFFFFF;">Was gestern passiert ist:</strong> Trump-Tarifdrohungen gegen EU → Crypto Market Cap -2.4% (-$78B). S&P 500 -2.1%, BTC -2.2%, ETH -5%. <strong style="color: #FFFFFF;">Aktuelle Lage:</strong> Flight-to-Safety aktiv. Stocks pumpen kurz nach Trump-Speech Davos (11:00 CET), aber Nachhaltigkeit fraglich. VIX 20.09 (elevated). <strong style="color: #FFFFFF;">Was heute erwartet wird:</strong> Rangeboundetes bis bearishes Umfeld für Crypto. Bull-Trap möglich bei Stocks. Spiky Volatilität wenn weitere Tariff-News kommen. Crypto bleibt unter Druck solange Risk-Off anhält.
-            </div>
-            <div class="levels-grid">
-                <div class="level-box">
-                    <div class="level-label">💰 Bitcoin (BTC)</div>
-                    <div class="level-type">1-DAY CHANGE</div>
-                    <div class="level-price">$89,328 (-3.0%)</div>
-                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">Bearish: 6-Tage-Downtrend. Consolidation unter 200-EMA. Range $88,600–$91,000. Support-Test wahrscheinlich.</div>
+                <div class="meta-item">
+                    <span class="price-badge">130.27 USD</span>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">📈 Nasdaq Composite</div>
-                    <div class="level-type">HEUTE (11:00 CET SPIKE)</div>
-                    <div class="level-price">+1.8% (Recovery)</div>
-                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">Trump-Speech Davos (+Greenland Easing) → Tech Rally. Aber Profit-Taking erwartet. Bull-Trap möglich.</div>
-                </div>
-                <div class="level-box">
-                    <div class="level-label">📊 S&P 500 (SPX)</div>
-                    <div class="level-type">HEUTE</div>
-                    <div class="level-price">+1.0% (Rebound)</div>
-                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">Bounce nach -2.1% Selloff gestern. Resistance 6,858 | Support 6,796. Flight-to-Safety aktiv.</div>
-                </div>
-                <div class="level-box">
-                    <div class="level-label">⚠️ Macro Sentiment</div>
-                    <div class="level-type">RISK LEVEL</div>
-                    <div class="level-price">HOCH (Tariffs)</div>
-                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">EU-Retaliationsdrohungen bleiben. VIX 20.09 (elevated). Crypto: Risk-Off. Spiky Moves erwartet.</div>
+                <div class="meta-item">
+                    <span>+1% (24h) | Range: 125.71–131.31</span>
                 </div>
             </div>
         </div>
 
         <!-- RISK ALERT -->
         <div class="risk-alert">
-            <div class="alert-title">🚨 MACRO RISK ALERT</div>
-            <div class="alert-content">Trump-Tarifdrohungen & ETF-Abflüsse → Erhöhte Volatilität erwartet. Position-Größe reduzieren. News-Filter ±15min vor/nach 13:30 CET.</div>
+            <h3>⚠️ NEWS VOLATILITY RISK – HOCH</h3>
+            <p>Heute: US Jobless Claims (14:30 CET) + Pending Home Sales (16:00 CET). Treasury-Yields unter Druck durch Trump-Tariffs. ETF-Flows positiv, aber Spiky-Volatilität erwartet. <span class="highlight-red">Vermeide aggressive Scalps 14:00–17:00 CET.</span> Low-Vol Trend-Following ist heute <span class="highlight-red">NICHT ideal</span> – nur klare Support-Bounces mit hohem Konfidenz-Setup.</p>
         </div>
 
-        <!-- TRADING RANGE -->
+        <!-- MARKET OVERVIEW -->
         <div class="section">
-            <div class="section-title">📊 Heutiges Handelsrange (CET)</div>
-            <div class="levels-grid">
-                <div class="level-box">
-                    <div class="level-label">Tages-High (Prognose)</div>
-                    <div class="level-type">RESISTANCE</div>
-                    <div class="level-price resistance">$131.50–$132.50</div>
+            <h2>📊 Marktüberblick</h2>
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Aktueller Kurs</div>
+                    <div class="metric-value">130.27 USD</div>
+                    <div class="metric-hint">Live-Daten</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">Aktueller Kurs</div>
-                    <div class="level-type">PIVOT</div>
-                    <div class="level-price">$127.44</div>
+                <div class="metric-card">
+                    <div class="metric-label">24h Veränderung</div>
+                    <div class="metric-value">+1%</div>
+                    <div class="metric-hint">Leicht positiv, aber volatile</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">Tages-Low (Prognose)</div>
-                    <div class="level-type">SUPPORT</div>
-                    <div class="level-price support">$125.00–$126.00</div>
+                <div class="metric-card">
+                    <div class="metric-label">Tages-Range</div>
+                    <div class="metric-value">125.71 – 131.31</div>
+                    <div class="metric-hint">Range: 5.60 USD</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">Range Breite</div>
-                    <div class="level-type">VOLATILITÄT</div>
-                    <div class="level-price">$5.50–$7.50</div>
+                <div class="metric-card">
+                    <div class="metric-label">Volatilität (1min ATR)</div>
+                    <div class="metric-value">~1.50 USD</div>
+                    <div class="metric-hint">ERHÖHT – spiky movements</div>
                 </div>
             </div>
+            <p class="text-small" style="margin-top: 12px;"><strong>Zusammenfassung:</strong> SOL konsolidiert oberhalb 130 USD mit erhöhter Volatilität. Range-gebundenes Umfeld mit bearischem Tilt. BTC und ETH auch schwach (Trump-Tariff-Angst). ETF-Inflows (+23.6M USD) stützen, aber Macro-Headwinds überwiegen heute.</p>
         </div>
 
-        <!-- SUPPORT & RESISTANCE ZONES -->
+        <!-- HANDELSRANGE -->
         <div class="section">
-            <div class="section-title">🎯 Kritische Support & Resistance Zonen</div>
-            <div class="levels-grid">
-                <div class="level-box">
-                    <div class="level-label">🔴 RESISTANCE (Short)</div>
-                    <div class="level-type">PRIMÄR</div>
-                    <div class="level-price resistance">$130.50–$131.50</div>
+            <h2>📍 Heutiges Handelsrange</h2>
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Erwartetes Tages-High</div>
+                    <div class="metric-value">131.50–132.50 USD</div>
+                    <div class="metric-hint">Pivot-R1, Widerstand</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">🟢 SUPPORT (Long)</div>
-                    <div class="level-type">PRIMÄR</div>
-                    <div class="level-price support">$126.00–$126.50</div>
+                <div class="metric-card">
+                    <div class="metric-label">Erwartetes Tages-Low</div>
+                    <div class="metric-value">125.00–126.00 USD</div>
+                    <div class="metric-hint">23.6% Fib-Retracement</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">🟡 PIVOT (Range)</div>
-                    <div class="level-type">NEUTRAL</div>
-                    <div class="level-price">$128.00–$129.00</div>
+                <div class="metric-card">
+                    <div class="metric-label">Trading-Zone</div>
+                    <div class="metric-value">126–131 USD</div>
+                    <div class="metric-hint">Range-Trading bevorzugt</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">SEKUNDÄR</div>
-                    <div class="level-type">BREAKOUT TARGETS</div>
-                    <div class="level-price resistance">$140 / $122</div>
+                <div class="metric-card">
+                    <div class="metric-label">Volatilität-Szenario</div>
+                    <div class="metric-value">Mittelhoch</div>
+                    <div class="metric-hint">News-bedingt spiky</div>
                 </div>
+            </div>
+            <p class="text-small" style="margin-top: 12px;"><strong>Wichtig:</strong> Halte dich innerhalb der 126–131 USD Range. Breakouts ohne Volume ignorieren. Bei Durchbruch durch 125 oder 132 → Sideline, bis neue Struktur klar ist.</p>
+        </div>
+
+        <!-- SUPPORT & RESISTANCE -->
+        <div class="section">
+            <h2>🎯 Support & Resistance Zonen</h2>
+            
+            <div class="support-zone">
+                <div class="zone-label">🟢 Primäre Support-Zone</div>
+                <div class="zone-value">126.00–126.50 USD</div>
+                <div class="zone-desc"><strong>Setup:</strong> Bounce mit Pinbar/Volume auf 1min. <span class="highlight-green">LONG Entry bei 0.382 Fibonacci</span> von Range. Stop Loss unterhalb 125.80 (unter 0.305 Fib). Target: 127.00 (1:1), 128.00 (3:1 R:R).</div>
+            </div>
+
+            <div class="resistance-zone">
+                <div class="zone-label">🔴 Sekundäre Resistance-Zone</div>
+                <div class="zone-value">130.50–131.50 USD</div>
+                <div class="zone-desc"><strong>Setup:</strong> Rejection-Short bei Divergenz. Stop Loss oberhalb 131.60. Target: 130.50 (1:1), 129.50 (3:1 R:R). <span class="highlight-red">Weniger wahrscheinlich heute</span> – Bullish-Bias durch ETFs.</div>
+            </div>
+
+            <h3>Handelsregeln</h3>
+            <div class="text-small">
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>✓ Long nur über 126.50 mit Trend-Bestätigung (Close über 200-SMA 1min)</li>
+                    <li>✓ Short nur bei Resistance-Rejection unter 200-SMA</li>
+                    <li>✓ Ignoriere Breakouts ohne Volume-Bestätigung</li>
+                    <li>✓ Keine FOMO-Trades – warte auf klare Struktur</li>
+                    <li>✓ Max 2 Trades/Tag, journal alle Einträge</li>
+                </ul>
             </div>
         </div>
 
         <!-- USA NEWS & MACRO -->
         <div class="section">
-            <div class="section-title">🇺🇸 USA Nachrichten & Macro-Faktoren</div>
-            <div class="news-list">
-                <div class="news-item">
-                    <div class="news-headline">🚨 Trump EU-Tarifdrohungen</div>
-                    <div class="news-desc">Zolldrohungen gegen NATO-Länder (Grönland-Dispute)</div>
-                    <div class="news-impact">Impact: BEARISH — Crypto-Market -2.4%, BTC -2.2%, ETH -5%</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-headline">📉 US-Aktienmarkt Selloff</div>
-                    <div class="news-desc">S&P 500 -2.1% gestern; Tech-Sektor schwach</div>
-                    <div class="news-impact">Impact: Risk-Off Sentiment, Flight-to-Safety</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-headline">💰 ETF-Abflüsse</div>
-                    <div class="news-desc">BTC ETF -$483M | ETH ETF -$230M</div>
-                    <div class="news-impact">Impact: Institutionelle Positionsreduzierung</div>
-                </div>
-                <div class="news-item">
-                    <div class="news-headline">📊 Treasury Yields High</div>
-                    <div class="news-desc">5-Year Yield 6-Monats-Hoch, Rezessionsängste</div>
-                    <div class="news-impact">Impact: Crypto bleibt unter Druck</div>
-                </div>
+            <h2>🗣️ USA Nachrichten & Macro-Faktoren</h2>
+            
+            <div class="news-item">
+                <div class="news-time">14:30 CET (8:30 ET)</div>
+                <div class="news-title">Initial Jobless Claims</div>
+                <div class="news-impact"><span class="highlight-red">HIGH IMPACT</span> – Erwartung ca. 215K. Könnte Yields beeinflussen, Fed-Dovishness-Signal.</div>
             </div>
+
+            <div class="news-item">
+                <div class="news-time">16:00 CET (10:00 ET)</div>
+                <div class="news-title">Pending Home Sales</div>
+                <div class="news-impact"><span class="highlight-red">MEDIUM IMPACT</span> – Real Estate Bellwether, Treasury-Yield-Effekt auf Risk-On Sentiment.</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-time">Laufend</div>
+                <div class="news-title">Trump-Tariffs & Trade-Tensions</div>
+                <div class="news-impact"><span class="highlight-red">CRITICAL</span> – EU-Tariffs im Fokus. Bond-Selloff, Flight-to-Safety (gut für USD, schlecht für Crypto). Crypto bleibt unter Druck bis Clarity.</div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-time">Backgrounding</div>
+                <div class="news-title">Solana ETF-Flows & Treasury Yields</div>
+                <div class="news-impact"><span class="highlight-green">POSITIVE</span> – ETF-Inflows +23.6M USD stützen. Fed-Dovishness bis 2026 favorisiert Risk-On, aber Volatilität bleibt hoch.</div>
+            </div>
+
+            <h3>Macro-Kontext</h3>
+            <p class="text-small" style="margin-top: 8px;">Trump-Tariff-Ankündigungen aus gestern (EU 10–20%) belasten Safe-Haven-Flows. Treasury Yields sinken durch Bond-Buying, aber Crypto bleibt volatile, weil Unsicherheit überwiegt. Jobless Claims und Home Sales könnten Yields senken (Fed-Pause-Signal) oder heben (Inflation-Angst). ETF-Inflows helfen SOL, aber Macro-Headwind dominiert. <span class="highlight-red">Erwartung: Choppy bis spiky Day. Kein Trending.</span></p>
         </div>
 
-        <!-- DAILY BIAS & INDICATORS -->
+        <!-- DAILY BIAS -->
         <div class="section">
-            <div class="section-title">📈 Daily Bias & Technische Indikatoren</div>
-            <div class="bias-container">
-                <div class="bias-box">
-                    <div class="bias-badge">🔴 BEARISH (kurzfristig)</div>
-                    <div class="indicator-list">
-                        <div class="indicator-item">
-                            <span class="indicator-label">Supertrend</span>
-                            <span class="indicator-signal">BEARISH</span>
-                        </div>
-                        <div class="indicator-item">
-                            <span class="indicator-label">Stochastic</span>
-                            <span class="indicator-signal">BEARISH</span>
-                        </div>
-                        <div class="indicator-item">
-                            <span class="indicator-label">MACD</span>
-                            <span class="indicator-signal">BEARISH</span>
-                        </div>
-                        <div class="indicator-item">
-                            <span class="indicator-label">Weekly-Trend</span>
-                            <span class="indicator-value">-11.4%</span>
-                        </div>
+            <h2>📈 Daily Bias & Technische Indikatoren</h2>
+            
+            <div class="bias-box">
+                <div class="bias-status bias-neutral">Neutral mit Bearischem Tilt</div>
+                <p class="text-small" style="margin-bottom: 12px;"><strong>Kurze Begründung:</strong> SOL notiert in Range, zeigt aber Divergenzen auf 1min. Supertrend nicht bullish, Stochastic/MACD neutral-to-bearish, RSI ~48. Weekly-Trend ist down von 143-High. Momentum inflektiert leicht nach unten, aber keine Clear-Bearish-Struktur. → Range-Trading favorisiert.</p>
+                
+                <div class="indicator-row">
+                    <div class="indicator">
+                        <div class="indicator-name">Supertrend (1min)</div>
+                        <div class="indicator-signal">Neutral (kein Trend)</div>
                     </div>
-                </div>
-                <div class="bias-box">
-                    <div class="bias-badge neutral">🟡 NEUTRAL (mittelfristig)</div>
-                    <div class="indicator-list">
-                        <div class="indicator-item">
-                            <span class="indicator-label">RSI(14)</span>
-                            <span class="indicator-value">48.80</span>
-                        </div>
-                        <div class="indicator-item">
-                            <span class="indicator-label">Volatilität</span>
-                            <span class="indicator-value">HOCH</span>
-                        </div>
-                        <div class="indicator-item">
-                            <span class="indicator-label">24h Vol</span>
-                            <span class="indicator-value">+92%</span>
-                        </div>
-                        <div class="indicator-item">
-                            <span class="indicator-label">Spread</span>
-                            <span class="indicator-value">Tight</span>
-                        </div>
+                    <div class="indicator">
+                        <div class="indicator-name">Stochastic (14)</div>
+                        <div class="indicator-signal">Bearish Signal (unter 50)</div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-name">MACD (1min)</div>
+                        <div class="indicator-signal">Neutral-Bearish (unter Signal)</div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-name">RSI (14)</div>
+                        <div class="indicator-signal">Neutral (~48)</div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-name">Weekly Trend</div>
+                        <div class="indicator-signal">Down (von 143)</div>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-name">200-SMA (1min)</div>
+                        <div class="indicator-signal">Widerstand ~131</div>
                     </div>
                 </div>
             </div>
+
+            <h3>Was ist heute zu erwarten?</h3>
+            <p class="text-small"><strong>Range-gebundetes bis leicht bearisches Umfeld.</strong> Unerwartete Richtungswechsel sind wahrscheinlich durch Macro-News. <span class="highlight-red">Low-Volatility Trend-Following ist NICHT ideal heute</span> – nur klare Support-Bounces bei extremer Struktur-Klarheit traden. Aggressive Scalps vermeiden zwischen 14:00–17:00 CET (US-Data). Best-Windows: 09:00–12:00 / 17:00–20:00 CET (low-news Zeiten).</p>
         </div>
 
-        <!-- SOLANA EXPECTATION & STRATEGY -->
+        <!-- TRADING STRATEGIE -->
         <div class="section">
-            <div class="section-title">🎯 Solana Erwartung & Trading-Strategie für heute</div>
-            <div style="background: rgba(140, 143, 150, 0.08); border-left: 3px solid #8C8F96; padding: 16px; border-radius: 8px; font-size: 12px; line-height: 1.8; color: #D5D7DB;">
-                <p style="margin-bottom: 12px;">
-                    <strong style="color: #FFFFFF;">🔍 Was erwartet dich bei Solana heute?</strong><br>
-                    SOL befindet sich in einem kurzfristigen Downtrend (Support-Trendlinie gebrochen bei -11.4% Wochenperformance). Das Makro-Umfeld (Risk-Off, Trump-Tariffs, ETF-Abflüsse) drückt Crypto massiv nach unten. Erwartung: <strong>Rangeboundetes bis bearisches Umfeld</strong> mit Schwerpunkt auf $125–$131.50 Zone. Ein klarer Break über $131.77 (gestrige High) könnte Shorts liquidieren und zu $140 führen, ist aber angesichts der Macro-Headwinds unwahrscheinlich. Wahrscheinlicheres Szenario: SOL pendelt in Range, testet Support $126 mehrfach, und bleibt unter $132 bis Macro-Stimmung sich dreht.
-                </p>
-                <p style="margin-bottom: 12px;">
-                    <strong style="color: #FFFFFF;">📍 Wie du beim Trading vorgehen solltest:</strong><br>
-                    <strong style="color: #D01024;">1. Nur bei klarer Setup traden:</strong> Deine Low-Volatility-Strategie braucht predictable Price Action. Heute ist das Environment spiky → WARTE auf strukturelle Support/Resistance Retest mit klarem Volume-Bestätigung. Keine aggresiven Scalps gegen den Trend.<br>
-                    <strong style="color: #D01024;">2. Primary Zone: $126–$126.50 (Support)</strong> – Das ist die wahrscheinlichste Aktion heute. Wenn SOL zur $126 Zone retestet, wird hier wahrscheinlich gekauft (institutionelle Bids). Entry nur wenn: Pinbar/Hammer auf 1m-Chart UND hoher Volume Spike nach oben. Target: $128–$129. Risk/Reward: 1:2 minimum.<br>
-                    <strong style="color: #D01024;">3. Secondary Zone: $130.50–$131.50 (Resistance)</strong> – Wenn SOL nach oben geht (weniger wahrscheinlich), wird hier massive Ablehnung erwartet (alte Resistance, Short-Stops). Short Entry nur bei Rejection + Volume Dump. Target: $128. Risk/Reward: 1:1 minimum (conservative wegen Macro).<br>
-                    <strong style="color: #D01024;">4. News-Filter ist KRITISCH:</strong> Zwischen 10:30–11:00 CET (US-Open Lead-Up) UND 13:30–14:00 CET (US-Open + European Close) können unerwartete Spikes/Dumps kommen. In diesen Zeiten: Hände am Keyboard halten, aber nicht aggressiv scalpen. Nur Ultra-klare Setups. Danach (14:00–16:00) ist das beste Trading-Fenster.<br>
-                    <strong style="color: #D01024;">5. Wenn Range hält:</strong> Range-Trading zwischen $126 und $131.50 ist möglich mit Target +0.50–0.75 Punkte pro Trade. Multiple kleine Gewinne besser als ein großer Verlust.
-                </p>
-                <p style="color: #D01024; font-weight: 600;">
-                    ⚠️ <strong>TL;DR für heute:</strong> Conservative Day. Warte auf Support-Bounce bei $126 mit klarem Setup. Wenn es sich anbietet: LONG mit kleinem Position-Size. SHORT nur bei extremem Rejection mit Volume. Wenn keine klare Struktur: Sitze auf den Händen. Deine Strategie funktioniert mit Klarheit – heute ist kein Tag für FOMO-Trades.
-                </p>
+            <h2>💡 Solana Erwartung & Trading-Strategie</h2>
+            
+            <h3>Was erwartest du bei Solana?</h3>
+            <div class="text-small" style="margin-bottom: 12px;">
+                <ul style="margin-left: 20px;">
+                    <li><strong>Range-gebundetes bis bearisches Umfeld</strong> – 126–131 USD Zone</li>
+                    <li><strong>Unlikely:</strong> Break über 131.77 wegen Macro-Headwinds</li>
+                    <li><strong>Wahrscheinlich:</strong> Pendeln in 125–131 Zone mit Support-Tests</li>
+                    <li><strong>ETF-Stütze:</strong> Inflows helfen gegen tiefe Moves</li>
+                    <li><strong>Volatilität:</strong> Elevated durch Trump-Tariffs & US-Data</li>
+                </ul>
             </div>
+
+            <h3>Wie du beim Trading vorgehen solltest</h3>
+            <div class="text-small">
+                <ol style="margin-left: 20px;">
+                    <li><strong>Nur klare Setups:</strong> Deine Low-Vol-Strategie braucht Predictability. Ignoriere Noise – warte Struktur.</li>
+                    <li><strong>Primary Zone 126–126.50:</strong> Support-Bounce mit Pinbar + Volume. LONG Entry bei 0.382 Fib.</li>
+                    <li><strong>Secondary Zone 130.50–131.50:</strong> Resistance-Rejection. SHORT nur bei MACD-Divergenz (weniger wahrscheinlich).</li>
+                    <li><strong>News-Filter KRITISCH:</strong> 10:30–12:00 & 14:00–17:00 CET = Spiky Volatilität. Sideline!</li>
+                    <li><strong>Range-Trading möglich:</strong> +0.50–0.75 Punkte pro Trade, 3:1 R:R. Max 2 Trades/Tag.</li>
+                </ol>
+            </div>
+
+            <p class="text-small" style="margin-top: 12px; padding: 12px; background: rgba(160, 163, 170, 0.05); border-left: 3px solid #8C8F96; border-radius: 4px;"><strong>TL;DR:</strong> Conservative Day → Warte auf Support-Bounce bei 126 mit klarem Setup. LONG bevorzugt, SHORT nur bei starker Rejection. Keine FOMO-Trades. Bei News-Times sideline. Profit-Ziel: +0.50–1.50% mit 1–2 high-probability Setups.</p>
         </div>
 
         <!-- TRADE SETUPS -->
         <div class="section">
-            <div class="section-title">⚡ High-Probability Trade-Setups (1-Min-Chart)</div>
-            <div class="setups-container">
-                <div class="setup long">
-                    <div class="setup-title">🟢 SETUP #1: LONG @ Support Bounce (HÖCHSTE WAHRSCHEINLICHKEIT)</div>
-                    <div class="setup-details">
-                        <div class="setup-detail">
-                            <div class="setup-detail-label">Trigger</div>
-                            <div class="setup-detail-value">Pinbar/Hammer @ $126–$126.50</div>
-                        </div>
-                        <div class="setup-detail">
-                            <div class="setup-detail-label">Volume-Bestätigung</div>
-                            <div class="setup-detail-value">+Volume Spike nach oben</div>
-                        </div>
-                        <div class="setup-detail">
-                            <div class="setup-detail-label">Entry</div>
-                            <div class="setup-detail-value">$126.10–$126.40</div>
-                        </div>
-                        <div class="setup-detail">
-                            <div class="setup-detail-label">Stop-Loss</div>
-                            <div class="setup-detail-value">$125.50 (tight)</div>
-                        </div>
-                        <div class="setup-detail">
-                            <div class="setup-detail-label">TP1</div>
-                            <div class="setup-detail-value">$127.50 (1.0:1)</div>
-                        </div>
-                        <div class="setup-detail">
-                            <div class="setup-detail-label">TP2</div>
-                            <div class="setup-detail-value">$128.50 (2.0:1)</div>
-                        </div>
-                        <div class="setup-detail">
-                            <div class="setup-detail-label">R:R Ratio</div>
-                            <div class="setup-detail-value">2.0:1 ✅</div>
-                        </div>
-                        <div class="setup-detail">
-                            <div class="setup-detail-label">Best Time</div>
-                            <div class="setup-detail-value">14:00–16:00 CET</div>
-                        </div>
+            <h2>🎪 Trade-Vorschläge (High-Probability Setups)</h2>
+            
+            <div class="setup-card">
+                <div class="setup-header">
+                    <div class="setup-title">Setup 1: LONG – Support Bounce</div>
+                    <div class="setup-confidence">80% Konfidenz</div>
+                </div>
+                <p class="text-small" style="margin-bottom: 12px;">Bounce bei 0.382 Fibonacci-Retracement von Range. Primary-Setup für Low-Vol Trend-Following.</p>
+                
+                <div class="setup-detail">
+                    <div class="detail-item">
+                        <div class="detail-label">Entry</div>
+                        <div class="detail-value">126.20 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Stop Loss</div>
+                        <div class="detail-value">125.80 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Target 1 (1:1)</div>
+                        <div class="detail-value">127.00 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Target 2 (3:1 R:R)</div>
+                        <div class="detail-value">128.00 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Risk Grösse</div>
+                        <div class="detail-value">0.40 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Risk-Reward Ratio</div>
+                        <div class="detail-value">1:1.75 → 1:3</div>
                     </div>
                 </div>
+
+                <p class="text-small" style="margin-top: 12px;"><strong>Trigger:</strong> Pinbar + Green Volume auf 1min bei 126.00–126.50. Close über 200-SMA bestätigt.</p>
+                <p class="text-small" style="margin-top: 6px;"><strong>Gültig:</strong> Außerhalb News-Fenster (09:00–12:00 / 17:00–20:00 CET). Wenn Close über 126.50 → Setup invalid, warte neue Struktur.</p>
             </div>
+
+            <div class="setup-card">
+                <div class="setup-header">
+                    <div class="setup-title">Setup 2: SHORT – Resistance Rejection</div>
+                    <div class="setup-confidence">45% Konfidenz (nur bei Divergenz)</div>
+                </div>
+                <p class="text-small" style="margin-bottom: 12px;">Rejection bei 130.50–131.50 mit MACD-Divergenz. Weniger wahrscheinlich heute durch bullish ETF-Flows. Nur bei Divergenz-Signal!!</p>
+                
+                <div class="setup-detail">
+                    <div class="detail-item">
+                        <div class="detail-label">Entry</div>
+                        <div class="detail-value">131.20 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Stop Loss</div>
+                        <div class="detail-value">131.60 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Target 1 (1:1)</div>
+                        <div class="detail-value">130.50 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Target 2 (3:1 R:R)</div>
+                        <div class="detail-value">129.50 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Risk Grösse</div>
+                        <div class="detail-value">0.40 USD</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Risk-Reward Ratio</div>
+                        <div class="detail-value">1:1.75 → 1:3</div>
+                    </div>
+                </div>
+
+                <p class="text-small" style="margin-top: 12px;"><strong>Trigger:</strong> Doji / Shooting Star + Red Volume + MACD-Divergenz auf 1min bei 130.50–131.50.</p>
+                <p class="text-small" style="margin-top: 6px;"><strong>⚠️ WARNUNG:</strong> Heute bullish ETF-Flows → SHORT Setup weniger wahrscheinlich. Nur beim sehr klaren Divergenz-Setup eingehen. Wenn Divergenz nicht vorhanden → SIDELINE.</p>
+            </div>
+
+            <p class="text-small" style="margin-top: 16px; padding: 12px; background: rgba(192, 0, 24, 0.1); border-left: 3px solid #D01024; border-radius: 4px;"><strong>⚠️ Nur 2 Setups heute:</strong> Nicht immer 3 Setups – nur wenn echte Struktur vorliegt. Deine Low-Vol-Strategie erfordert Qualität über Quantität. Setup 1 (LONG) ist hochwahrscheinlich. Setup 2 (SHORT) nur bei klarer Divergenz, sonst sideline.</p>
         </div>
 
-        <!-- RISK MANAGEMENT -->
+        <!-- RISIKO-MANAGEMENT -->
         <div class="section">
-            <div class="section-title">🛡️ Risiko-Management Guidelines</div>
-            <div class="levels-grid">
-                <div class="level-box">
-                    <div class="level-label">1️⃣ Position-Größe</div>
-                    <div class="level-type">NORMAL: 50% (Macro-Risk)</div>
+            <h2>⚔️ Risiko-Management & Position-Sizing</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Max Risk pro Trade</div>
+                    <div class="metric-value">1% Kapital</div>
+                    <div class="metric-hint">Bei ~100–200 USD/Tag Ziel</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">2️⃣ Stop-Loss</div>
-                    <div class="level-type">IMMER SETZEN – Keine Exceptions</div>
+                <div class="metric-card">
+                    <div class="metric-label">Volatilität-basiertes Sizing</div>
+                    <div class="metric-value">ATR-Anpassung</div>
+                    <div class="metric-hint">ATR~1.5 USD = 0.50–1 USD SL</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">3️⃣ Volume-Filter</div>
-                    <div class="level-type">Alle Entries mit hohem Vol</div>
+                <div class="metric-card">
+                    <div class="metric-label">Trades pro Tag</div>
+                    <div class="metric-value">Max 2</div>
+                    <div class="metric-hint">Quality > Quantity</div>
                 </div>
-                <div class="level-box">
-                    <div class="level-label">4️⃣ News-Filter</div>
-                    <div class="level-type">±15min vor/nach 13:30 CET</div>
+                <div class="metric-card">
+                    <div class="metric-label">News-Pause</div>
+                    <div class="metric-value">14:00–17:00 CET</div>
+                    <div class="metric-hint">Spike-Risiko durch US-Data</div>
                 </div>
+            </div>
+
+            <h3>Spezifische Empfehlungen heute</h3>
+            <div class="text-small" style="margin-top: 12px;">
+                <ul style="margin-left: 20px;">
+                    <li><span class="highlight-red">Vermeide aggressive Scalps 14:00–17:00 CET</span> – Jobless Claims & Home Sales Volatilität</li>
+                    <li><strong>Position-Size anpassen:</strong> ATR-Volatilität ~1.5 USD → kleiner sizen als üblich, max 0.50–1 USD SL</li>
+                    <li><strong>Journal alle Trades:</strong> Dokumentiere Macro-Umfeld, Entry-Begründung, Warum Gewinn/Verlust</li>
+                    <li><strong>Kein Averaging Down:</strong> Wenn Setup nicht funktioniert → Accept Loss, warte nächste Opportunity</li>
+                    <li><strong>Sideline bei hoher Vol:</strong> Wenn ATR >2 USD intraday → Pause, warte Consolidation</li>
+                </ul>
             </div>
         </div>
 
         <!-- SUMMARY -->
-        <div class="summary">
-            <div class="summary-title">📋 Trading Summary für heute (21. Jan 2026 CET)</div>
-            <div class="summary-grid">
-                <div class="summary-item">
-                    <div class="summary-label">Setup-Qualität</div>
-                    <div class="summary-value">Mittel ⚠️</div>
+        <div class="section">
+            <h2>📋 Zusammenfassung & Best-Trading-Windows</h2>
+            
+            <div class="summary-stat">
+                <div class="stat-block">
+                    <div class="stat-label">Trading-Ansatz heute</div>
+                    <div class="stat-value">Range-Trading</div>
                 </div>
-                <div class="summary-item">
-                    <div class="summary-label">Best Window</div>
-                    <div class="summary-value">14:00–16:00 CET</div>
+                <div class="stat-block">
+                    <div class="stat-label">Daily Bias</div>
+                    <div class="stat-value">Neutral-Bearish</div>
                 </div>
-                <div class="summary-item">
-                    <div class="summary-label">Profit Target</div>
-                    <div class="summary-value">+0.5%–1.5%</div>
+                <div class="stat-block">
+                    <div class="stat-label">Wahrscheinliche Setups</div>
+                    <div class="stat-value">1–2 (LONG bevorzugt)</div>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-label">Profit-Erwartung</div>
+                    <div class="stat-value">+0.50–1.50%</div>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-label">Risiko-Level</div>
+                    <div class="stat-value">Erhöht (Macro)</div>
+                </div>
+                <div class="stat-block">
+                    <div class="stat-label">Best-Windows</div>
+                    <div class="stat-value">09:00–12:00 / 17:00–20:00 CET</div>
                 </div>
             </div>
-            <div class="summary-note">
-                🎯 <strong>Strategie:</strong> Conservative Approach – Focus auf Support-Bounces ($126) oder Resistance-Rejections ($131,50). Aggressive Trades nicht empfohlen wegen Macro-Headwinds.
-            </div>
+
+            <h3>Kurzer Überblick</h3>
+            <p class="text-small" style="margin-top: 12px;"><strong>Heute ist ein Range-Trading-Tag mit erhöhten Macro-Risiken.</strong> SOL notiert in 126–131 USD Zone mit bullish ETF-Stütze, aber bearischem Trend und Trump-Tariff-Headwinds. Best-Setup: Support-Bounce bei 126 (LONG, 0.382 Fib Entry, 3:1 R:R, 80% Konfidenz). SHORT nur bei starker Divergenz (weniger wahrscheinlich). <span class="highlight-red">Vermeide 14:00–17:00 CET</span> wegen US-Data. Mit guter Disziplin sind 1–2 high-probability Trades möglich = +0.50–1.50% Profit-Erwartung. Focus: Qualität statt Quantität. Sideline bei Unsicherheit.</p>
         </div>
 
         <!-- FOOTER -->
         <div class="footer">
-            <p>SOL/USD Daily Trading Report | 21. Januar 2026, 10:30 CET | 1-Minuten-Chart optimiert</p>
-            <p style="margin-top: 8px;">⚠️ Disclaimer: Keine Finanzberatung. Trading hat Risiken. Stop-Loss ist Pflicht.</p>
+            <p>Solana Daily Trading Report | 22. Januar 2026 | 10:31 CET</p>
+            <p style="margin-top: 8px; font-size: 11px; color: #8C8F96;">Disclaimer: Dies ist eine technische Analyse für Bildungszwecke. Vergangenheit garantiert keine zukünftigen Ergebnisse. Trading ist risikobehaftet. Nur mit Kapital handeln, dessen Verlust du verkraften kannst.</p>
         </div>
     </div>
 </body>
 </html>
-    <meta charset="UTF
