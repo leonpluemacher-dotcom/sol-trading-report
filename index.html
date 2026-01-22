@@ -24,6 +24,7 @@
             margin: 0 auto;
         }
 
+        /* ===== HEADER ===== */
         .header {
             background: linear-gradient(135deg, rgba(208, 16, 36, 0.15) 0%, rgba(140, 143, 150, 0.08) 100%);
             border: 1px solid rgba(208, 16, 36, 0.3);
@@ -93,38 +94,7 @@
             color: #10b981;
         }
 
-        .refresh-btn {
-            margin-top: 16px;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #D01024 0%, #C00018 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 12px;
-            transition: opacity 0.3s;
-        }
-
-        .refresh-btn:hover {
-            opacity: 0.9;
-        }
-
-        .refresh-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .loading {
-            display: inline-block;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        /* ===== RISK ALERT ===== */
         .risk-alert {
             background: linear-gradient(135deg, rgba(208, 16, 36, 0.2) 0%, rgba(208, 16, 36, 0.08) 100%);
             border-left: 4px solid #D01024;
@@ -149,6 +119,7 @@
             line-height: 1.6;
         }
 
+        /* ===== SECTIONS ===== */
         .section {
             background: rgba(140, 143, 150, 0.04);
             border: 1px solid rgba(140, 143, 150, 0.15);
@@ -167,6 +138,7 @@
             gap: 10px;
         }
 
+        /* ===== LEVELS TABLE ===== */
         .levels-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -209,6 +181,7 @@
             color: #D01024;
         }
 
+        /* ===== NEWS ITEMS ===== */
         .news-list {
             display: flex;
             flex-direction: column;
@@ -242,6 +215,7 @@
             font-weight: 600;
         }
 
+        /* ===== BIAS & INDICATORS ===== */
         .bias-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -310,6 +284,7 @@
             font-weight: 700;
         }
 
+        /* ===== TRADE SETUPS ===== */
         .setups-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -363,6 +338,7 @@
             font-family: 'Courier New', monospace;
         }
 
+        /* ===== SUMMARY BOX ===== */
         .summary {
             background: linear-gradient(135deg, #D01024 0%, #C00018 100%);
             border-radius: 14px;
@@ -412,6 +388,7 @@
             padding-top: 16px;
         }
 
+        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             margin-top: 32px;
@@ -421,25 +398,24 @@
             border-top: 1px solid rgba(140, 143, 150, 0.2);
         }
 
-        .timestamp {
-            font-size: 11px;
-            color: #8C8F96;
-            margin-top: 8px;
-        }
-
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .header {
                 padding: 20px;
             }
+
             .header-title {
                 font-size: 20px;
             }
+
             .header-stats {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .section {
                 padding: 16px;
             }
+
             .levels-grid {
                 grid-template-columns: 1fr;
             }
@@ -455,23 +431,21 @@
                 <div class="header-stats">
                     <div class="stat-item">
                         <div class="stat-label">Kurs</div>
-                        <div class="stat-value" id="currentPrice">$--</div>
+                        <div class="stat-value">$127.44</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-label">24h Change</div>
-                        <div class="stat-value" id="priceChange">--%</div>
+                        <div class="stat-value negative">-1.01%</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-label">Volatilität</div>
-                        <div class="stat-value" id="volatility">--</div>
+                        <div class="stat-value negative">HOCH</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-label">Risiko-Level</div>
-                        <div class="stat-value" id="riskLevel">--</div>
+                        <div class="stat-value negative">HIGH</div>
                     </div>
                 </div>
-                <button class="refresh-btn" id="refreshBtn" onclick="fetchLiveData()">🔄 Daten aktualisieren</button>
-                <div class="timestamp" id="timestamp"></div>
             </div>
         </div>
 
@@ -479,40 +453,40 @@
         <div class="section">
             <div class="section-title">🌍 Macro Overview – Bitcoin, Nasdaq & S&P 500</div>
             <div style="background: rgba(140, 143, 150, 0.08); border-left: 3px solid #8C8F96; padding: 14px; border-radius: 8px; margin-bottom: 18px; font-size: 12px; line-height: 1.7; color: #D5D7DB;">
-                <strong style="color: #FFFFFF;">Aktuelle Lage:</strong> Crypto-Märkte in Risk-Off Modus. Bitcoin unter Druck, Solana folgt dem Trend. VIX erhöht. <strong style="color: #FFFFFF;">Erwartung für heute:</strong> Rangeboundetes bis bearisches Umfeld mit volatilen Spikes bei Macro-News.
+                <strong style="color: #FFFFFF;">Was gestern passiert ist:</strong> Trump-Tarifdrohungen gegen EU → Crypto Market Cap -2.4% (-$78B). S&P 500 -2.1%, BTC -2.2%, ETH -5%. <strong style="color: #FFFFFF;">Aktuelle Lage:</strong> Flight-to-Safety aktiv. Stocks pumpen kurz nach Trump-Speech Davos (11:00 CET), aber Nachhaltigkeit fraglich. VIX 20.09 (elevated). <strong style="color: #FFFFFF;">Was heute erwartet wird:</strong> Rangeboundetes bis bearishes Umfeld für Crypto. Bull-Trap möglich bei Stocks. Spiky Volatilität wenn weitere Tariff-News kommen. Crypto bleibt unter Druck solange Risk-Off anhält.
             </div>
             <div class="levels-grid">
                 <div class="level-box">
                     <div class="level-label">💰 Bitcoin (BTC)</div>
-                    <div class="level-type">AKTUELLER KURS</div>
-                    <div class="level-price" id="btcPrice">$--</div>
-                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;" id="btcChange">--</div>
+                    <div class="level-type">1-DAY CHANGE</div>
+                    <div class="level-price">$89,328 (-3.0%)</div>
+                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">Bearish: 6-Tage-Downtrend. Consolidation unter 200-EMA. Range $88,600–$91,000. Support-Test wahrscheinlich.</div>
                 </div>
                 <div class="level-box">
-                    <div class="level-label">📈 Solana (SOL)</div>
-                    <div class="level-type">ECHTZEIT-KURS</div>
-                    <div class="level-price" id="solPrice">$--</div>
-                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;" id="solChange">--</div>
+                    <div class="level-label">📈 Nasdaq Composite</div>
+                    <div class="level-type">HEUTE (11:00 CET SPIKE)</div>
+                    <div class="level-price">+1.8% (Recovery)</div>
+                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">Trump-Speech Davos (+Greenland Easing) → Tech Rally. Aber Profit-Taking erwartet. Bull-Trap möglich.</div>
                 </div>
                 <div class="level-box">
-                    <div class="level-label">📊 24h Volumen</div>
-                    <div class="level-type">SOL TRADING VOLUME</div>
-                    <div class="level-price" id="solVolume">$--</div>
-                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">Aktivität im Markt</div>
+                    <div class="level-label">📊 S&P 500 (SPX)</div>
+                    <div class="level-type">HEUTE</div>
+                    <div class="level-price">+1.0% (Rebound)</div>
+                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">Bounce nach -2.1% Selloff gestern. Resistance 6,858 | Support 6,796. Flight-to-Safety aktiv.</div>
                 </div>
                 <div class="level-box">
                     <div class="level-label">⚠️ Macro Sentiment</div>
                     <div class="level-type">RISK LEVEL</div>
-                    <div class="level-price" id="macroSentiment">HOCH</div>
-                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">Volatilität erwartet</div>
+                    <div class="level-price">HOCH (Tariffs)</div>
+                    <div style="font-size: 11px; color: #8C8F96; margin-top: 10px; line-height: 1.5;">EU-Retaliationsdrohungen bleiben. VIX 20.09 (elevated). Crypto: Risk-Off. Spiky Moves erwartet.</div>
                 </div>
             </div>
         </div>
 
         <!-- RISK ALERT -->
         <div class="risk-alert">
-            <div class="alert-title">🚨 LIVE DATEN INFO</div>
-            <div class="alert-content">Dieser Report wird mit Echtzeit-Daten von CoinGecko aktualisiert. Klicke auf "Daten aktualisieren" für die neuesten Preise. Die Daten aktualisieren sich automatisch jede Stunde.</div>
+            <div class="alert-title">🚨 MACRO RISK ALERT</div>
+            <div class="alert-content">Trump-Tarifdrohungen & ETF-Abflüsse → Erhöhte Volatilität erwartet. Position-Größe reduzieren. News-Filter ±15min vor/nach 13:30 CET.</div>
         </div>
 
         <!-- TRADING RANGE -->
@@ -520,24 +494,24 @@
             <div class="section-title">📊 Heutiges Handelsrange (CET)</div>
             <div class="levels-grid">
                 <div class="level-box">
-                    <div class="level-label">24h High (Heute)</div>
+                    <div class="level-label">Tages-High (Prognose)</div>
                     <div class="level-type">RESISTANCE</div>
-                    <div class="level-price resistance" id="dayHigh">$--</div>
+                    <div class="level-price resistance">$131.50–$132.50</div>
                 </div>
                 <div class="level-box">
                     <div class="level-label">Aktueller Kurs</div>
                     <div class="level-type">PIVOT</div>
-                    <div class="level-price" id="currentPivot">$--</div>
+                    <div class="level-price">$127.44</div>
                 </div>
                 <div class="level-box">
-                    <div class="level-label">24h Low (Heute)</div>
+                    <div class="level-label">Tages-Low (Prognose)</div>
                     <div class="level-type">SUPPORT</div>
-                    <div class="level-price support" id="dayLow">$--</div>
+                    <div class="level-price support">$125.00–$126.00</div>
                 </div>
                 <div class="level-box">
                     <div class="level-label">Range Breite</div>
                     <div class="level-type">VOLATILITÄT</div>
-                    <div class="level-price" id="rangeWidth">$--</div>
+                    <div class="level-price">$5.50–$7.50</div>
                 </div>
             </div>
         </div>
@@ -549,22 +523,49 @@
                 <div class="level-box">
                     <div class="level-label">🔴 RESISTANCE (Short)</div>
                     <div class="level-type">PRIMÄR</div>
-                    <div class="level-price resistance" id="res1">$--</div>
+                    <div class="level-price resistance">$130.50–$131.50</div>
                 </div>
                 <div class="level-box">
                     <div class="level-label">🟢 SUPPORT (Long)</div>
                     <div class="level-type">PRIMÄR</div>
-                    <div class="level-price support" id="sup1">$--</div>
+                    <div class="level-price support">$126.00–$126.50</div>
                 </div>
                 <div class="level-box">
                     <div class="level-label">🟡 PIVOT (Range)</div>
                     <div class="level-type">NEUTRAL</div>
-                    <div class="level-price" id="pivot">$--</div>
+                    <div class="level-price">$128.00–$129.00</div>
                 </div>
                 <div class="level-box">
                     <div class="level-label">SEKUNDÄR</div>
                     <div class="level-type">BREAKOUT TARGETS</div>
-                    <div class="level-price resistance" id="targets">$--</div>
+                    <div class="level-price resistance">$140 / $122</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- USA NEWS & MACRO -->
+        <div class="section">
+            <div class="section-title">🇺🇸 USA Nachrichten & Macro-Faktoren</div>
+            <div class="news-list">
+                <div class="news-item">
+                    <div class="news-headline">🚨 Trump EU-Tarifdrohungen</div>
+                    <div class="news-desc">Zolldrohungen gegen NATO-Länder (Grönland-Dispute)</div>
+                    <div class="news-impact">Impact: BEARISH — Crypto-Market -2.4%, BTC -2.2%, ETH -5%</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-headline">📉 US-Aktienmarkt Selloff</div>
+                    <div class="news-desc">S&P 500 -2.1% gestern; Tech-Sektor schwach</div>
+                    <div class="news-impact">Impact: Risk-Off Sentiment, Flight-to-Safety</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-headline">💰 ETF-Abflüsse</div>
+                    <div class="news-desc">BTC ETF -$483M | ETH ETF -$230M</div>
+                    <div class="news-impact">Impact: Institutionelle Positionsreduzierung</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-headline">📊 Treasury Yields High</div>
+                    <div class="news-desc">5-Year Yield 6-Monats-Hoch, Rezessionsängste</div>
+                    <div class="news-impact">Impact: Crypto bleibt unter Druck</div>
                 </div>
             </div>
         </div>
@@ -574,32 +575,146 @@
             <div class="section-title">📈 Daily Bias & Technische Indikatoren</div>
             <div class="bias-container">
                 <div class="bias-box">
-                    <div class="bias-badge" id="biasBadge">🔴 BEARISH (kurzfristig)</div>
+                    <div class="bias-badge">🔴 BEARISH (kurzfristig)</div>
                     <div class="indicator-list">
                         <div class="indicator-item">
-                            <span class="indicator-label">Trend</span>
-                            <span class="indicator-signal" id="trend">BEARISH</span>
+                            <span class="indicator-label">Supertrend</span>
+                            <span class="indicator-signal">BEARISH</span>
                         </div>
                         <div class="indicator-item">
-                            <span class="indicator-label">Market Cap</span>
-                            <span class="indicator-value" id="marketCap">$--</span>
+                            <span class="indicator-label">Stochastic</span>
+                            <span class="indicator-signal">BEARISH</span>
                         </div>
                         <div class="indicator-item">
-                            <span class="indicator-label">24h Volatilität</span>
-                            <span class="indicator-value" id="volatilityHigh">HOCH</span>
+                            <span class="indicator-label">MACD</span>
+                            <span class="indicator-signal">BEARISH</span>
+                        </div>
+                        <div class="indicator-item">
+                            <span class="indicator-label">Weekly-Trend</span>
+                            <span class="indicator-value">-11.4%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bias-box">
+                    <div class="bias-badge neutral">🟡 NEUTRAL (mittelfristig)</div>
+                    <div class="indicator-list">
+                        <div class="indicator-item">
+                            <span class="indicator-label">RSI(14)</span>
+                            <span class="indicator-value">48.80</span>
+                        </div>
+                        <div class="indicator-item">
+                            <span class="indicator-label">Volatilität</span>
+                            <span class="indicator-value">HOCH</span>
+                        </div>
+                        <div class="indicator-item">
+                            <span class="indicator-label">24h Vol</span>
+                            <span class="indicator-value">+92%</span>
+                        </div>
+                        <div class="indicator-item">
+                            <span class="indicator-label">Spread</span>
+                            <span class="indicator-value">Tight</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- SOLANA EXPECTATION & STRATEGY -->
+        <div class="section">
+            <div class="section-title">🎯 Solana Erwartung & Trading-Strategie für heute</div>
+            <div style="background: rgba(140, 143, 150, 0.08); border-left: 3px solid #8C8F96; padding: 16px; border-radius: 8px; font-size: 12px; line-height: 1.8; color: #D5D7DB;">
+                <p style="margin-bottom: 12px;">
+                    <strong style="color: #FFFFFF;">🔍 Was erwartet dich bei Solana heute?</strong><br>
+                    SOL befindet sich in einem kurzfristigen Downtrend (Support-Trendlinie gebrochen bei -11.4% Wochenperformance). Das Makro-Umfeld (Risk-Off, Trump-Tariffs, ETF-Abflüsse) drückt Crypto massiv nach unten. Erwartung: <strong>Rangeboundetes bis bearisches Umfeld</strong> mit Schwerpunkt auf $125–$131.50 Zone. Ein klarer Break über $131.77 (gestrige High) könnte Shorts liquidieren und zu $140 führen, ist aber angesichts der Macro-Headwinds unwahrscheinlich. Wahrscheinlicheres Szenario: SOL pendelt in Range, testet Support $126 mehrfach, und bleibt unter $132 bis Macro-Stimmung sich dreht.
+                </p>
+                <p style="margin-bottom: 12px;">
+                    <strong style="color: #FFFFFF;">📍 Wie du beim Trading vorgehen solltest:</strong><br>
+                    <strong style="color: #D01024;">1. Nur bei klarer Setup traden:</strong> Deine Low-Volatility-Strategie braucht predictable Price Action. Heute ist das Environment spiky → WARTE auf strukturelle Support/Resistance Retest mit klarem Volume-Bestätigung. Keine aggresiven Scalps gegen den Trend.<br>
+                    <strong style="color: #D01024;">2. Primary Zone: $126–$126.50 (Support)</strong> – Das ist die wahrscheinlichste Aktion heute. Wenn SOL zur $126 Zone retestet, wird hier wahrscheinlich gekauft (institutionelle Bids). Entry nur wenn: Pinbar/Hammer auf 1m-Chart UND hoher Volume Spike nach oben. Target: $128–$129. Risk/Reward: 1:2 minimum.<br>
+                    <strong style="color: #D01024;">3. Secondary Zone: $130.50–$131.50 (Resistance)</strong> – Wenn SOL nach oben geht (weniger wahrscheinlich), wird hier massive Ablehnung erwartet (alte Resistance, Short-Stops). Short Entry nur bei Rejection + Volume Dump. Target: $128. Risk/Reward: 1:1 minimum (conservative wegen Macro).<br>
+                    <strong style="color: #D01024;">4. News-Filter ist KRITISCH:</strong> Zwischen 10:30–11:00 CET (US-Open Lead-Up) UND 13:30–14:00 CET (US-Open + European Close) können unerwartete Spikes/Dumps kommen. In diesen Zeiten: Hände am Keyboard halten, aber nicht aggressiv scalpen. Nur Ultra-klare Setups. Danach (14:00–16:00) ist das beste Trading-Fenster.<br>
+                    <strong style="color: #D01024;">5. Wenn Range hält:</strong> Range-Trading zwischen $126 und $131.50 ist möglich mit Target +0.50–0.75 Punkte pro Trade. Multiple kleine Gewinne besser als ein großer Verlust.
+                </p>
+                <p style="color: #D01024; font-weight: 600;">
+                    ⚠️ <strong>TL;DR für heute:</strong> Conservative Day. Warte auf Support-Bounce bei $126 mit klarem Setup. Wenn es sich anbietet: LONG mit kleinem Position-Size. SHORT nur bei extremem Rejection mit Volume. Wenn keine klare Struktur: Sitze auf den Händen. Deine Strategie funktioniert mit Klarheit – heute ist kein Tag für FOMO-Trades.
+                </p>
+            </div>
+        </div>
+
+        <!-- TRADE SETUPS -->
+        <div class="section">
+            <div class="section-title">⚡ High-Probability Trade-Setups (1-Min-Chart)</div>
+            <div class="setups-container">
+                <div class="setup long">
+                    <div class="setup-title">🟢 SETUP #1: LONG @ Support Bounce (HÖCHSTE WAHRSCHEINLICHKEIT)</div>
+                    <div class="setup-details">
+                        <div class="setup-detail">
+                            <div class="setup-detail-label">Trigger</div>
+                            <div class="setup-detail-value">Pinbar/Hammer @ $126–$126.50</div>
+                        </div>
+                        <div class="setup-detail">
+                            <div class="setup-detail-label">Volume-Bestätigung</div>
+                            <div class="setup-detail-value">+Volume Spike nach oben</div>
+                        </div>
+                        <div class="setup-detail">
+                            <div class="setup-detail-label">Entry</div>
+                            <div class="setup-detail-value">$126.10–$126.40</div>
+                        </div>
+                        <div class="setup-detail">
+                            <div class="setup-detail-label">Stop-Loss</div>
+                            <div class="setup-detail-value">$125.50 (tight)</div>
+                        </div>
+                        <div class="setup-detail">
+                            <div class="setup-detail-label">TP1</div>
+                            <div class="setup-detail-value">$127.50 (1.0:1)</div>
+                        </div>
+                        <div class="setup-detail">
+                            <div class="setup-detail-label">TP2</div>
+                            <div class="setup-detail-value">$128.50 (2.0:1)</div>
+                        </div>
+                        <div class="setup-detail">
+                            <div class="setup-detail-label">R:R Ratio</div>
+                            <div class="setup-detail-value">2.0:1 ✅</div>
+                        </div>
+                        <div class="setup-detail">
+                            <div class="setup-detail-label">Best Time</div>
+                            <div class="setup-detail-value">14:00–16:00 CET</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RISK MANAGEMENT -->
+        <div class="section">
+            <div class="section-title">🛡️ Risiko-Management Guidelines</div>
+            <div class="levels-grid">
+                <div class="level-box">
+                    <div class="level-label">1️⃣ Position-Größe</div>
+                    <div class="level-type">NORMAL: 50% (Macro-Risk)</div>
+                </div>
+                <div class="level-box">
+                    <div class="level-label">2️⃣ Stop-Loss</div>
+                    <div class="level-type">IMMER SETZEN – Keine Exceptions</div>
+                </div>
+                <div class="level-box">
+                    <div class="level-label">3️⃣ Volume-Filter</div>
+                    <div class="level-type">Alle Entries mit hohem Vol</div>
+                </div>
+                <div class="level-box">
+                    <div class="level-label">4️⃣ News-Filter</div>
+                    <div class="level-type">±15min vor/nach 13:30 CET</div>
+                </div>
+            </div>
+        </div>
+
         <!-- SUMMARY -->
         <div class="summary">
-            <div class="summary-title">📋 Trading Summary für heute (CET)</div>
+            <div class="summary-title">📋 Trading Summary für heute (21. Jan 2026 CET)</div>
             <div class="summary-grid">
                 <div class="summary-item">
                     <div class="summary-label">Setup-Qualität</div>
-                    <div class="summary-value" id="setupQuality">Mittel ⚠️</div>
+                    <div class="summary-value">Mittel ⚠️</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-label">Best Window</div>
@@ -611,123 +726,15 @@
                 </div>
             </div>
             <div class="summary-note">
-                🎯 <strong>Strategie:</strong> Conservative Approach – Focus auf Support-Bounces oder Resistance-Rejections. Echtzeit-Daten beachten!
+                🎯 <strong>Strategie:</strong> Conservative Approach – Focus auf Support-Bounces ($126) oder Resistance-Rejections ($131,50). Aggressive Trades nicht empfohlen wegen Macro-Headwinds.
             </div>
         </div>
 
         <!-- FOOTER -->
         <div class="footer">
-            <p id="reportDate">SOL/USD Daily Trading Report</p>
+            <p>SOL/USD Daily Trading Report | 21. Januar 2026, 10:30 CET | 1-Minuten-Chart optimiert</p>
             <p style="margin-top: 8px;">⚠️ Disclaimer: Keine Finanzberatung. Trading hat Risiken. Stop-Loss ist Pflicht.</p>
         </div>
     </div>
-
-    <script>
-        // Auto-refresh every 60 minutes
-        setInterval(fetchLiveData, 3600000);
-
-        // Initial load
-        fetchLiveData();
-
-        async function fetchLiveData() {
-            const btn = document.getElementById('refreshBtn');
-            btn.disabled = true;
-            btn.textContent = '⏳ Laden...';
-
-            try {
-                // Fetch SOL data from CoinGecko
-                const solResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_high_low_24h=true');
-                const solData = await solResponse.json();
-                
-                // Fetch BTC data
-                const btcResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true');
-                const btcData = await btcResponse.json();
-
-                // Extract SOL data
-                const sol = solData.solana;
-                const btc = btcData.bitcoin;
-                
-                const currentPrice = sol.usd.toFixed(2);
-                const change24h = sol.usd_24h_change.toFixed(2);
-                const high24h = sol.usd_high_24h.toFixed(2);
-                const low24h = sol.usd_low_24h.toFixed(2);
-                const volume24h = (sol.usd_24h_vol / 1000000).toFixed(0);
-                const marketCap = (sol.usd_market_cap / 1000000000).toFixed(2);
-                const btcPrice = btc.usd.toFixed(2);
-                const btcChange = btc.usd_24h_change.toFixed(2);
-
-                // Calculate levels based on current price
-                const price = parseFloat(currentPrice);
-                const rangeFive = ((price * 0.02).toFixed(2)); // 2% range
-                const resistanceLevel = (price * 1.025).toFixed(2);
-                const supportLevel = (price * 0.97).toFixed(2);
-                const pivotLevel = ((parseFloat(high24h) + parseFloat(low24h) + price) / 3).toFixed(2);
-                const rangeWidth = (parseFloat(high24h) - parseFloat(low24h)).toFixed(2);
-
-                // Determine sentiment based on price change
-                const isPositive = change24h > 0;
-                const isBearish = change24h < -2;
-                const biasText = isBearish ? '🔴 BEARISH (kurzfristig)' : isPositive ? '🟢 BULLISH (kurzfristig)' : '🟡 NEUTRAL (kurzfristig)';
-
-                // Update DOM
-                document.getElementById('currentPrice').textContent = `$${currentPrice}`;
-                document.getElementById('currentPrice').className = isPositive ? 'stat-value positive' : 'stat-value negative';
-                
-                document.getElementById('priceChange').textContent = `${change24h}%`;
-                document.getElementById('priceChange').className = isPositive ? 'stat-value positive' : 'stat-value negative';
-                
-                document.getElementById('volatility').textContent = Math.abs(change24h) > 5 ? 'HOCH' : 'NORMAL';
-                document.getElementById('volatility').className = Math.abs(change24h) > 5 ? 'stat-value negative' : 'stat-value';
-                
-                document.getElementById('riskLevel').textContent = Math.abs(change24h) > 5 ? 'HIGH' : 'MEDIUM';
-                document.getElementById('riskLevel').className = Math.abs(change24h) > 5 ? 'stat-value negative' : 'stat-value';
-
-                document.getElementById('btcPrice').textContent = `$${btcPrice}`;
-                document.getElementById('btcChange').textContent = `24h: ${btcChange}%`;
-
-                document.getElementById('solPrice').textContent = `$${currentPrice}`;
-                document.getElementById('solChange').textContent = `24h: ${change24h}% | Vol: $${volume24h}M`;
-                
-                document.getElementById('solVolume').textContent = `$${volume24h}M`;
-
-                document.getElementById('dayHigh').textContent = `$${high24h}`;
-                document.getElementById('dayLow').textContent = `$${low24h}`;
-                document.getElementById('currentPivot').textContent = `$${currentPrice}`;
-                document.getElementById('rangeWidth').textContent = `$${rangeWidth}`;
-
-                document.getElementById('res1').textContent = `$${resistanceLevel}`;
-                document.getElementById('sup1').textContent = `$${supportLevel}`;
-                document.getElementById('pivot').textContent = `$${pivotLevel}`;
-                document.getElementById('targets').textContent = `$${(price * 1.1).toFixed(2)} / $${(price * 0.9).toFixed(2)}`;
-
-                document.getElementById('biasBadge').textContent = biasText;
-                document.getElementById('trend').textContent = isBearish ? 'BEARISH' : isPositive ? 'BULLISH' : 'NEUTRAL';
-
-                document.getElementById('marketCap').textContent = `$${marketCap}B`;
-
-                document.getElementById('setupQuality').textContent = Math.abs(change24h) < 3 ? 'Gut ✅' : 'Mittel ⚠️';
-
-                // Update timestamp
-                const now = new Date();
-                const timeStr = now.toLocaleString('de-DE', { 
-                    hour: '2-digit', 
-                    minute: '2-digit', 
-                    second: '2-digit',
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                });
-                document.getElementById('timestamp').textContent = `Aktualisiert: ${timeStr} CET`;
-                document.getElementById('reportDate').textContent = `SOL/USD Daily Trading Report | ${timeStr}`;
-
-            } catch (error) {
-                console.error('Fehler beim Laden der Daten:', error);
-                alert('Fehler beim Laden der Daten. Bitte überprüfe deine Internetverbindung und versuche es erneut.');
-            } finally {
-                btn.disabled = false;
-                btn.textContent = '🔄 Daten aktualisieren';
-            }
-        }
-    </script>
 </body>
 </html>
